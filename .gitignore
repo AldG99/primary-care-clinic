@@ -21,3 +21,18 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# config
+**/src/constants/config.js
+
+# service
+**/src/api
+
+# firebase
+firebase.js
+
+# metro.config.js
+metro.config.js
+
+# logo
+assets/logo.png
