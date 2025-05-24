@@ -1,7 +1,7 @@
-import React from 'react';
+// src/hooks/useAlerts.js
+import { useContext } from 'react';
+import { AlertContext } from '../context/AlertContext';
 
-const UseAlerts = () => {
-  return <div>UseAlerts</div>;
+export const useAlerts = () => {
+  return useContext(AlertContext);
 };
-
-export default UseAlerts;
