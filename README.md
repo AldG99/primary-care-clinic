@@ -1,70 +1,132 @@
-# Getting Started with Create React App
+# 🌐 Primary Care Clinic
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicación web para consultorios de atención primaria desarrollada con React. Permite a médicos y enfermeras gestionar historiales de pacientes, citas médicas y información clínica desde cualquier navegador web de forma eficiente y segura.
 
-## Available Scripts
+## 🚀 Características
 
-In the project directory, you can run:
+- Gestión de historiales médicos desde el navegador
+- Sistema de citas y consultas online
+- Búsqueda avanzada de pacientes
+- Recordatorios automáticos
+- Interfaz web optimizada para profesionales de la salud
+- Acceso desde cualquier dispositivo con navegador
 
-### `npm start`
+## 🛠️ Tecnologías
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- Create React App
+- JavaScript/ES6+
+- CSS3
+- HTML5
+- Local Storage
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📋 Instalación
 
-### `npm test`
+1. **Clona el repositorio**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/AldG99/primary-care-clinic.git
+cd primary-care-clinic
+```
 
-### `npm run build`
+2. **Instala dependencias**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Ejecuta la aplicación**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm start
+```
 
-### `npm run eject`
+4. **Abre tu navegador** en `http://localhost:3000`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 📱 Uso
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Accede desde cualquier navegador web moderno
+- Inicia sesión con credenciales médicas
+- Gestiona pacientes y citas de forma intuitiva
+- Compatible con desktop, tablet y móvil
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📂 Estructura
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+primary-care-clinic/
+├── public/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   └── styles/
+├── package.json
+└── README.md
+```
 
-## Learn More
+## 🚀 Scripts Disponibles
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start          # Modo desarrollo
+npm test           # Ejecutar tests
+npm run build      # Build para producción
+npm run eject      # Eject configuración (irreversible)
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 👥 Usuarios Objetivo
 
-### Code Splitting
+- **Médicos**: Gestión completa de historiales y diagnósticos
+- **Enfermeras**: Registro de signos vitales y seguimiento
+- **Personal administrativo**: Gestión de citas y recordatorios
+- **Consultorios**: Solución web integral para clínicas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🔒 Seguridad
 
-### Analyzing the Bundle Size
+- Manejo seguro de datos médicos sensibles
+- Cumplimiento con estándares de privacidad
+- Acceso controlado por roles de usuario
+- Protección de información confidencial
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🌐 Despliegue
 
-### Making a Progressive Web App
+Para desplegar la aplicación:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm run build
+```
 
-### Advanced Configuration
+Los archivos optimizados estarán en la carpeta `build/` listos para producción.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🤝 Contribución
 
-### Deployment
+1. Fork el proyecto
+2. Crea una rama (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit cambios (`git commit -m 'Añadir funcionalidad médica'`)
+4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
+5. Abre un Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 👨‍💻 Autores
 
-### `npm run build` fails to minify
+**AldG99**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- GitHub: [@AldG99](https://github.com/AldG99)
+
+**DaniTr-04**
+
+- GitHub: [@DaniTr-04](https://github.com/DaniTr-04)
+
+## 📄 Licencia
+
+MIT License - consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+## 🔗 Proyecto Relacionado
+
+📱 **Versión Móvil**: [Primary Care Clinic App](https://github.com/AldG99/primary-care-clinic-app) - Aplicación móvil desarrollada con React Native y Expo.
+
+## ⚕️ Disclaimer
+
+Esta aplicación está diseñada como herramienta de apoyo para profesionales médicos. No sustituye el criterio médico profesional ni debe usarse como única fuente para decisiones clínicas.
+
+---
+
+⭐ Si te resulta útil para tu consultorio, ¡dale una estrella al repositorio!
