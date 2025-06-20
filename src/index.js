@@ -1,31 +1,17 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
+import ReactDOM from 'react-dom/client';
 import App from './App';
-import { ThemeProvider } from './context/ThemeContext';
-import { AuthProvider } from './context/AuthContext';
-import { AlertProvider } from './context/AlertContext';
-import './firebase';
 
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+// Importar archivos CSS personalizados
+import './styles/globalStyles';
 
-// For web, we need to add global styles
-import './styles/global.css';
+// Importar Font Awesome
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
-const container = document.getElementById('root');
-const root = createRoot(container);
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <AuthProvider>
-        <AlertProvider>
-          <App />
-        </AlertProvider>
-      </AuthProvider>
-    </ThemeProvider>
+    <App />
   </React.StrictMode>
 );
