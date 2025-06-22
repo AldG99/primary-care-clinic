@@ -1,0 +1,138 @@
+// src/styles/_colors.scss
+
+// ============================================================================
+// LIGHT THEME COLORS
+// ============================================================================
+$light-colors: (
+  // 60% - Color base (azul claro/blanco)
+  primary: #f5f9fc,
+  background: #ffffff,
+  background-light: #f7fafd,
+  card: #f0f7ff,
+  white: #ffffff,
+
+  // 30% - Color secundario (azul medio)
+  secondary: #4da1ff,
+  secondary-light: #e1efff,
+  secondary-dark: #2d8cff,
+
+  // 10% - Color de acento (azul oscuro)
+  accent: #0055cc,
+
+  // Colores funcionales
+  text: #333333,
+  subtext: #666666,
+  text-muted: #999999,
+  border: #e0e0e0,
+  error: #ff4d4d,
+  success: #4caf50,
+  warning: #ffc107,
+  info: #2196f3
+);
+
+// ============================================================================
+// DARK THEME COLORS
+// ============================================================================
+$dark-colors: (
+  // 60% - Color base (azul oscuro/negro)
+  primary: #1a2938,
+  background: #0f1924,
+  background-light: #1f2f3f,
+  card: #253545,
+  white: #253545,
+
+  // 30% - Color secundario (azul medio/oscuro)
+  secondary: #2c5282,
+  secondary-light: #37628f,
+  secondary-dark: #1d3a5e,
+
+  // 10% - Color de acento (azul claro)
+  accent: #63b3ed,
+
+  // Colores funcionales
+  text: #f0f7ff,
+  subtext: #cbd5e0,
+  text-muted: #8a9aaf,
+  border: #2d3748,
+  error: #ff6b6b,
+  success: #68d391,
+  warning: #f6e05e,
+  info: #63b3ed
+);
+
+// ============================================================================
+// FUNCIONES HELPER
+// ============================================================================
+
+// Función para obtener colores del tema claro
+@function light-color($key) {
+  @return map-get($light-colors, $key);
+}
+
+// Función para obtener colores del tema oscuro
+@function dark-color($key) {
+  @return map-get($dark-colors, $key);
+}
+
+// ============================================================================
+// VARIABLES CSS PERSONALIZADAS (CSS Custom Properties)
+// ============================================================================
+
+// Variables CSS para el tema claro
+:root {
+  --color-primary: #{light-color(primary)};
+  --color-background: #{light-color(background)};
+  --color-background-light: #{light-color(background-light)};
+  --color-card: #{light-color(card)};
+  --color-white: #{light-color(white)};
+  --color-secondary: #{light-color(secondary)};
+  --color-secondary-light: #{light-color(secondary-light)};
+  --color-secondary-dark: #{light-color(secondary-dark)};
+  --color-accent: #{light-color(accent)};
+  --color-text: #{light-color(text)};
+  --color-subtext: #{light-color(subtext)};
+  --color-text-muted: #{light-color(text-muted)};
+  --color-border: #{light-color(border)};
+  --color-error: #{light-color(error)};
+  --color-success: #{light-color(success)};
+  --color-warning: #{light-color(warning)};
+  --color-info: #{light-color(info)};
+}
+
+// Variables CSS para el tema oscuro
+[data-theme='dark'] {
+  --color-primary: #{dark-color(primary)};
+  --color-background: #{dark-color(background)};
+  --color-background-light: #{dark-color(background-light)};
+  --color-card: #{dark-color(card)};
+  --color-white: #{dark-color(white)};
+  --color-secondary: #{dark-color(secondary)};
+  --color-secondary-light: #{dark-color(secondary-light)};
+  --color-secondary-dark: #{dark-color(secondary-dark)};
+  --color-accent: #{dark-color(accent)};
+  --color-text: #{dark-color(text)};
+  --color-subtext: #{dark-color(subtext)};
+  --color-text-muted: #{dark-color(text-muted)};
+  --color-border: #{dark-color(border)};
+  --color-error: #{dark-color(error)};
+  --color-success: #{dark-color(success)};
+  --color-warning: #{dark-color(warning)};
+  --color-info: #{dark-color(info)};
+}
+
+// ============================================================================
+// MIXINS PARA FACILITAR EL USO
+// ============================================================================
+
+// Mixin para aplicar colores de tema
+@mixin theme-colors($theme: 'light') {
+  @if $theme == 'light' {
+    @each $key, $value in $light-colors {
+      --#{$key}: #{$value};
+    }
+  } @else if $theme == 'dark' {
+    @each $key, $value in $dark-colors {
+      --#{$key}: #{$value};
+    }
+  }
+}
