@@ -1,15 +1,32 @@
 // src/components/navigation/Sidebar.js
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
 import { useTheme } from '../../hooks/useTheme';
 import { useAuth } from '../../hooks/useAuth';
+import './Sidebar.scss';
 
 const Sidebar = () => {
   const { colors } = useTheme();
   const { hasPermission } = useAuth();
   const location = useLocation();
   const [expanded, setExpanded] = useState(true);
+
+  // Apply theme colors to CSS variables
+  React.useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--theme-colors-white', colors.white);
+    root.style.setProperty('--theme-colors-border', colors.border);
+    root.style.setProperty('--theme-colors-text', colors.text);
+    root.style.setProperty(
+      '--theme-colors-background-light',
+      colors.backgroundLight
+    );
+    root.style.setProperty('--theme-colors-secondary', colors.secondary);
+    root.style.setProperty(
+      '--theme-colors-secondary-light',
+      colors.secondaryLight
+    );
+  }, [colors]);
 
   const toggleSidebar = () => {
     setExpanded(!expanded);
@@ -20,167 +37,85 @@ const Sidebar = () => {
     return location.pathname === path;
   };
 
+  // Construir clases CSS dinámicamente
+  const buildSidebarClassName = () => {
+    const classes = ['sidebar'];
+
+    if (!expanded) {
+      classes.push('sidebar--collapsed');
+    }
+
+    return classes.join(' ');
+  };
+
+  const buildNavItemClassName = path => {
+    const classes = ['sidebar__nav-item'];
+
+    if (isActive(path)) {
+      classes.push('sidebar__nav-item--active');
+    }
+
+    return classes.join(' ');
+  };
+
+  const sidebarClassName = buildSidebarClassName();
+
   return (
-    <SidebarContainer expanded={expanded}>
-      <LogoContainer>
-        {/* Reemplazamos el icono por la imagen del logo */}
-        <AppLogoImg>
+    <aside className={sidebarClassName}>
+      <div className="sidebar__logo-container">
+        <div className="sidebar__logo-img">
           <img src="/assets/logo.png" alt="MediNote Logo" />
-        </AppLogoImg>
-        {expanded && <AppName>MediNote</AppName>}
-        <ToggleButton onClick={toggleSidebar}>
+        </div>
+        {expanded && <h1 className="sidebar__app-name">MediNote</h1>}
+        <button
+          className="sidebar__toggle-button"
+          onClick={toggleSidebar}
+          aria-label={expanded ? 'Colapsar sidebar' : 'Expandir sidebar'}
+        >
           <i className={`fas fa-chevron-${expanded ? 'left' : 'right'}`}></i>
-        </ToggleButton>
-      </LogoContainer>
+        </button>
+      </div>
 
-      <NavLinks>
-        <NavItem to="/" active={isActive('/')}>
-          <NavIcon className="fas fa-home"></NavIcon>
-          {expanded && <NavText>Inicio</NavText>}
-        </NavItem>
+      <div className="sidebar__nav-links">
+        <NavLink to="/" className={buildNavItemClassName('/')}>
+          <i className="sidebar__nav-icon fas fa-home"></i>
+          {expanded && <span className="sidebar__nav-text">Inicio</span>}
+        </NavLink>
 
-        <NavItem to="/patients" active={isActive('/patients')}>
-          <NavIcon className="fas fa-users"></NavIcon>
-          {expanded && <NavText>Pacientes</NavText>}
-        </NavItem>
+        <NavLink to="/patients" className={buildNavItemClassName('/patients')}>
+          <i className="sidebar__nav-icon fas fa-users"></i>
+          {expanded && <span className="sidebar__nav-text">Pacientes</span>}
+        </NavLink>
 
-        <NavItem to="/records" active={isActive('/records')}>
-          <NavIcon className="fas fa-file-medical"></NavIcon>
-          {expanded && <NavText>Registros</NavText>}
-        </NavItem>
+        <NavLink to="/records" className={buildNavItemClassName('/records')}>
+          <i className="sidebar__nav-icon fas fa-file-medical"></i>
+          {expanded && <span className="sidebar__nav-text">Registros</span>}
+        </NavLink>
 
-        <NavItem to="/alerts" active={isActive('/alerts')}>
-          <NavIcon className="fas fa-bell"></NavIcon>
-          {expanded && <NavText>Alertas</NavText>}
-        </NavItem>
+        <NavLink to="/alerts" className={buildNavItemClassName('/alerts')}>
+          <i className="sidebar__nav-icon fas fa-bell"></i>
+          {expanded && <span className="sidebar__nav-text">Alertas</span>}
+        </NavLink>
 
-        <NavItem to="/search" active={isActive('/search')}>
-          <NavIcon className="fas fa-search"></NavIcon>
-          {expanded && <NavText>Buscar</NavText>}
-        </NavItem>
-      </NavLinks>
+        <NavLink to="/search" className={buildNavItemClassName('/search')}>
+          <i className="sidebar__nav-icon fas fa-search"></i>
+          {expanded && <span className="sidebar__nav-text">Buscar</span>}
+        </NavLink>
+      </div>
 
-      <BottomLinks>
-        <NavItem to="/settings" active={isActive('/settings')}>
-          <NavIcon className="fas fa-cog"></NavIcon>
-          {expanded && <NavText>Configuración</NavText>}
-        </NavItem>
+      <div className="sidebar__bottom-links">
+        <NavLink to="/settings" className={buildNavItemClassName('/settings')}>
+          <i className="sidebar__nav-icon fas fa-cog"></i>
+          {expanded && <span className="sidebar__nav-text">Configuración</span>}
+        </NavLink>
 
-        <NavItem to="/profile" active={isActive('/profile')}>
-          <NavIcon className="fas fa-user"></NavIcon>
-          {expanded && <NavText>Perfil</NavText>}
-        </NavItem>
-      </BottomLinks>
-    </SidebarContainer>
+        <NavLink to="/profile" className={buildNavItemClassName('/profile')}>
+          <i className="sidebar__nav-icon fas fa-user"></i>
+          {expanded && <span className="sidebar__nav-text">Perfil</span>}
+        </NavLink>
+      </div>
+    </aside>
   );
 };
-
-// Estilos
-const SidebarContainer = styled.aside`
-  display: flex;
-  flex-direction: column;
-  width: ${({ expanded }) => (expanded ? '240px' : '60px')};
-  background-color: ${props => props.theme.colors.white};
-  border-right: 1px solid ${props => props.theme.colors.border};
-  transition: width 0.3s ease;
-  overflow: hidden;
-  height: 100vh;
-  position: sticky;
-  top: 0;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 16px;
-  border-bottom: 1px solid ${props => props.theme.colors.border};
-  position: relative;
-`;
-
-// Reemplazamos AppLogo con AppLogoImg
-const AppLogoImg = styled.div`
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 12px;
-  overflow: hidden;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Para asegurar que el logo se vea completo */
-  }
-`;
-
-const AppName = styled.h1`
-  font-size: 18px;
-  font-weight: 600;
-  color: ${props => props.theme.colors.text};
-  white-space: nowrap;
-`;
-
-const ToggleButton = styled.button`
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: ${props => props.theme.colors.text};
-  cursor: pointer;
-  font-size: 12px;
-  padding: 4px;
-`;
-
-// Resto de los estilos se mantienen igual
-const NavLinks = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 16px 0;
-  flex: 1;
-`;
-
-const NavItem = styled(NavLink)`
-  display: flex;
-  align-items: center;
-  padding: 12px 16px;
-  color: ${props =>
-    props.active ? props.theme.colors.secondary : props.theme.colors.text};
-  text-decoration: none;
-  font-weight: ${props => (props.active ? '600' : '400')};
-  background-color: ${props =>
-    props.active ? props.theme.colors.secondaryLight : 'transparent'};
-  border-left: 3px solid
-    ${props => (props.active ? props.theme.colors.secondary : 'transparent')};
-
-  &:hover {
-    background-color: ${props => props.theme.colors.backgroundLight};
-  }
-`;
-
-const NavIcon = styled.i`
-  font-size: 16px;
-  width: 24px;
-  text-align: center;
-`;
-
-const NavText = styled.span`
-  margin-left: 12px;
-  white-space: nowrap;
-`;
-
-const BottomLinks = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 16px 0;
-  border-top: 1px solid ${props => props.theme.colors.border};
-`;
 
 export default Sidebar;

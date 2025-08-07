@@ -1,0 +1,131 @@
+// Sidebar.scss
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  background-color: var(--theme-colors-white);
+  border-right: 1px solid var(--theme-colors-border);
+  transition: width 0.3s ease;
+  overflow: hidden;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+
+  &--collapsed {
+    width: 60px;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  &__logo-container {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid var(--theme-colors-border);
+    position: relative;
+  }
+
+  &__logo-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__app-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--theme-colors-text);
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  &__toggle-button {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--theme-colors-text);
+    cursor: pointer;
+    font-size: 12px;
+    padding: 4px;
+    outline: none;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &__nav-links {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0;
+    flex: 1;
+  }
+
+  &__nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: var(--theme-colors-text);
+    text-decoration: none;
+    font-weight: 400;
+    background-color: transparent;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: var(--theme-colors-background-light);
+    }
+
+    &--active {
+      color: var(--theme-colors-secondary);
+      font-weight: 600;
+      background-color: var(--theme-colors-secondary-light);
+      border-left-color: var(--theme-colors-secondary);
+    }
+  }
+
+  &__nav-icon {
+    font-size: 16px;
+    width: 24px;
+    text-align: center;
+  }
+
+  &__nav-text {
+    margin-left: 12px;
+    white-space: nowrap;
+  }
+
+  &__bottom-links {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0;
+    border-top: 1px solid var(--theme-colors-border);
+  }
+}
+
+// Variables CSS adicionales para Sidebar (si no están definidas)
+:root {
+  // Colores principales
+  --color-white: #ffffff;
+  --color-text: #333333;
+  --color-border: #e0e0e0;
+  --color-background-light: #f8f9fa;
+  --color-secondary: #6c757d;
+  --color-secondary-light: #f8f9fa;
+}
